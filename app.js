@@ -8,6 +8,7 @@ const app = express();
 
 const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env; // пока что по умолчанию, потом скрыть
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 // Импортируем роутеры
 const routerSignUp = require('./routes/signUp');
@@ -19,6 +20,17 @@ const routerError = require('./routes/error');
 // Подключение к серверу mongoDB
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
+});
+
+app.use(bodyParser.json());
+
+// Временная авторизация
+app.use('/', (req, res, next) => {
+  req.user = {
+    _id: '63515924da185ce2f0a8217c',
+  };
+
+  next();
 });
 
 // Основные роуты
