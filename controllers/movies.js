@@ -33,13 +33,29 @@ const createMovie = (req, res) => {
     .catch((err) => res.send(err));
 };
 
-const getMovies = (req, res, next) => {
+const getMovies = (req, res) => {
   Movie.find({})
     .then((movies) => res.send(movies))
-    .catch(next);
+    .catch((err) => res.send(err));
+};
+
+const deleteMovie = (req, res) => {
+  Movie.findOne({ _id: req.params.movieId })
+    .orFail(new Error())
+    .then((movie) => {
+      if (movie.owner.toString() === req.user._id) {
+        Movie.remove(movie)
+          .then(() => res.send({ message: 'Фильм удален' }))
+          .catch((err) => res.send(err));
+      } else {
+        throw new Error();
+      }
+    })
+    .catch((err) => res.send(err));
 };
 
 module.exports = {
   createMovie,
   getMovies,
+  deleteMovie,
 };
