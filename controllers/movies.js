@@ -33,6 +33,13 @@ const createMovie = (req, res) => {
     .catch((err) => res.send(err));
 };
 
+const getMovies = (req, res, next) => {
+  Movie.find({})
+    .then((movies) => res.send(movies))
+    .catch(next);
+};
+
 module.exports = {
   createMovie,
+  getMovies,
 };
