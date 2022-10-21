@@ -10,6 +10,9 @@ const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/bitfilmsdb' } = pr
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+// Импортируем мидлвэры
+const error = require('./middlewares/error');
+
 // Импортируем роутеры
 const routerSignUp = require('./routes/signUp');
 const routerSignIn = require('./routes/signIn');
@@ -41,5 +44,8 @@ app.use('/', routerMovies);
 
 // Обработка неправильного пути
 app.use('*', routerError);
+
+// Централизованный обработчик ошибок (основные ошибки + celebrate)
+app.use(error);
 
 app.listen(PORT);

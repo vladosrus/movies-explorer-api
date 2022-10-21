@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator(email) {
-        const regex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
+        const regex = /^[a-z0-9-_.]+?@[a-z]+\.[a-z]+/i;
 
         return regex.test(email);
       },
