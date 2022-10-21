@@ -20,6 +20,19 @@ const createUser = (req, res) => {
     .catch((err) => res.send(err));
 };
 
+const getUser = (req, res) => {
+  User.findById(req.user._id)
+    .orFail(new Error())
+    .then((user) => {
+      res.send({
+        name: user.name,
+        email: user.email,
+      });
+    })
+    .catch((err) => res.send(err));
+};
+
 module.exports = {
   createUser,
+  getUser,
 };
