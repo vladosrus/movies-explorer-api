@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
-router.all('*');
+const requestError = require('../controllers/errors');
+
+router.all('*', requestError);
 
 module.exports = router;
