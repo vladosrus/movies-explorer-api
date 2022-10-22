@@ -4,7 +4,11 @@ const routerMovies = require('./movies');
 
 const NotFoundError = require('../errors/notFoundError');
 const { createUser, login, logout } = require('../controllers/users');
-const { validateSignUpBody, validateSignInBody } = require('../middlewares/validations');
+const {
+  validateSignUpBody,
+  validateSignInBody,
+} = require('../middlewares/validations');
+const { wrongPathErrorMessage } = require('../utils/constants');
 
 router.post('/signin', validateSignInBody, login);
 router.post('/signup', validateSignUpBody, createUser);
@@ -14,7 +18,7 @@ router.use('/movies', routerMovies);
 
 // Обработка неправильного пути
 router.use((req, res, next) => {
-  next(new NotFoundError('Неправильный путь'));
+  next(new NotFoundError(wrongPathErrorMessage));
 });
 
 module.exports = router;

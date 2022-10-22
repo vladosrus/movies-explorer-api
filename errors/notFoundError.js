@@ -1,9 +1,9 @@
-const { NOT_FOUND } = process.env;
+const { notFound } = require('../utils/constants');
 
 class NotFoundError extends Error {
   constructor(message) {
     super(message);
-    this.statusCode = NOT_FOUND;
+    this.statusCode = notFound;
   }
 }
 

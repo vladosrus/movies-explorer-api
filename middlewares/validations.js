@@ -31,7 +31,10 @@ const emptyErrorMessage = (field) => {
 };
 
 // Параметры валидации поля name
-const validateNameField = Joi.string().required().min(2).max(30)
+const validateNameField = Joi.string()
+  .required()
+  .min(2)
+  .max(30)
   .trim()
   .messages({
     'string.min': 'Минимальная длина поля name - 2 символа',
@@ -41,7 +44,10 @@ const validateNameField = Joi.string().required().min(2).max(30)
   });
 
 // Параметры валидации поля email
-const validateEmailField = Joi.string().required().trim().email()
+const validateEmailField = Joi.string()
+  .required()
+  .trim()
+  .email()
   .messages({
     'any.required': requiredErrorMessage('email'),
     'string.empty': emptyErrorMessage('email'),
@@ -49,7 +55,9 @@ const validateEmailField = Joi.string().required().trim().email()
   });
 
 // Параметры валидации поля password
-const validatePasswordField = Joi.string().required().trim()
+const validatePasswordField = Joi.string()
+  .required()
+  .trim()
   .messages({
     'any.required': requiredErrorMessage('password'),
     'string.empty': emptyErrorMessage('password'),
@@ -63,56 +71,79 @@ const validateMovieId = celebrate({
 
 const validateMovieBody = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().trim()
+    country: Joi.string()
+      .required()
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('country'),
         'string.empty': emptyErrorMessage('country'),
       }),
-    director: Joi.string().required().trim()
+    director: Joi.string()
+      .required()
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('director'),
         'string.empty': emptyErrorMessage('director'),
       }),
-    duration: Joi.number().required()
+    duration: Joi.number()
+      .required()
       .messages({
         'any.required': requiredErrorMessage('duration'),
         'string.empty': emptyErrorMessage('duration'),
       }),
-    year: Joi.string().required().trim()
+    year: Joi.string()
+      .required()
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('year'),
         'string.empty': emptyErrorMessage('year'),
       }),
-    description: Joi.string().required().trim()
+    description: Joi.string()
+      .required()
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('description'),
         'string.empty': emptyErrorMessage('description'),
       }),
-    image: Joi.string().required().custom(urlValidator).trim()
+    image: Joi.string()
+      .required()
+      .custom(urlValidator)
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('image'),
         'string.empty': emptyErrorMessage('image'),
       }),
-    trailerLink: Joi.string().required().custom(urlValidator).trim()
+    trailerLink: Joi.string()
+      .required()
+      .custom(urlValidator)
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('trailerLink'),
         'string.empty': emptyErrorMessage('trailerLink'),
       }),
-    thumbnail: Joi.string().required().custom(urlValidator).trim()
+    thumbnail: Joi.string()
+      .required()
+      .custom(urlValidator)
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('thumbnail'),
         'string.empty': emptyErrorMessage('thumbnail'),
       }),
-    movieId: Joi.number().required()
+    movieId: Joi.number()
+      .required()
       .messages({
         'any.required': requiredErrorMessage('movieId'),
       }),
-    nameRU: Joi.string().required().trim()
+    nameRU: Joi.string()
+      .required()
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('nameRU'),
         'string.empty': emptyErrorMessage('nameRU'),
       }),
-    nameEN: Joi.string().required().trim()
+    nameEN: Joi.string()
+      .required()
+      .trim()
       .messages({
         'any.required': requiredErrorMessage('nameEN'),
         'string.empty': emptyErrorMessage('nameEN'),

@@ -1,9 +1,9 @@
-const { UNAUTHORIZED } = process.env;
+const { unauthorized } = require('../utils/constants');
 
 class UnauthorizedError extends Error {
   constructor(message) {
     super(message);
-    this.statusCode = UNAUTHORIZED;
+    this.statusCode = unauthorized;
   }
 }
 
