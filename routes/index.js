@@ -3,9 +3,10 @@ const routerUsers = require('./users');
 const routerMovies = require('./movies');
 
 const NotFoundError = require('../errors/notFoundError');
-const { createUser, login } = require('../controllers/users');
+const { createUser, login, logout } = require('../controllers/users');
 
 router.post('/signin', login);
+router.post('/signout', logout);
 router.post('/signup', createUser);
 router.use('/users', routerUsers);
 router.use('/movies', routerMovies);
