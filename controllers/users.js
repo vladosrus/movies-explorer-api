@@ -97,9 +97,21 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req, res, next) => {
+  if (req.headers.cookie) {
+    res
+      .clearCookie('jwt')
+      .send({ message: 'Пользователь покинул систему' })
+      .end();
+  } else {
+    next(new BadRequestError('Сookie отсутствует'));
+  }
+};
+
 module.exports = {
   createUser,
   getUser,
   updateUser,
   login,
+  logout,
 };
