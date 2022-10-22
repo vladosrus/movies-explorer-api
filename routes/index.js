@@ -6,8 +6,8 @@ const NotFoundError = require('../errors/notFoundError');
 const { createUser, login, logout } = require('../controllers/users');
 
 router.post('/signin', login);
-router.post('/signout', logout);
 router.post('/signup', createUser);
+router.post('/signout', logout);
 router.use('/users', routerUsers);
 router.use('/movies', routerMovies);
 

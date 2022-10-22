@@ -98,7 +98,7 @@ const login = (req, res, next) => {
 };
 
 const logout = (req, res, next) => {
-  if (req.headers.cookie) {
+  if (req.cookies.jwt) {
     res
       .clearCookie('jwt')
       .send({ message: 'Пользователь покинул систему' })
