@@ -6,7 +6,7 @@ const express = require('express');
 
 const app = express();
 
-const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env; // пока что по умолчанию, потом скрыть
+const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/moviesdb' } = process.env; // пока что по умолчанию, потом скрыть
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
