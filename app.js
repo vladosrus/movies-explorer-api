@@ -13,6 +13,7 @@ const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/moviesdb' } = proc
 
 // Импортируем мидлвэры
 const error = require('./middlewares/error');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // Импортируем роутеры
 const routers = require('./routes/index');
@@ -26,8 +27,14 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(helmet());
 
+// Логгер запросов
+app.use(requestLogger);
+
 // Основные роуты
 app.use(routers);
+
+// Логгер ошибок
+app.use(errorLogger);
 
 // Централизованный обработчик ошибок ( celebrate + основные ошибки)
 app.use(errors());
