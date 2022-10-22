@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
 const app = express();
 const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/moviesdb' } = process.env; // пока что по умолчанию, потом скрыть
@@ -22,6 +23,7 @@ mongoose.connect(MONGODB_URL, {
 
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(helmet());
 
 // Основные роуты
 app.use(routers);
