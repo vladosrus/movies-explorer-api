@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
+const { errors } = require('celebrate');
 
 const app = express();
 const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/moviesdb' } = process.env; // пока что по умолчанию, потом скрыть
@@ -28,7 +29,8 @@ app.use(helmet());
 // Основные роуты
 app.use(routers);
 
-// Централизованный обработчик ошибок (основные ошибки + celebrate)
+// Централизованный обработчик ошибок ( celebrate + основные ошибки)
+app.use(errors());
 app.use(error);
 
 app.listen(PORT);
