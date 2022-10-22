@@ -14,6 +14,7 @@ const { PORT = 3000, MONGODB_URL = 'mongodb://localhost:27017/moviesdb' } = proc
 // Импортируем мидлвэры
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/rate-limit');
 
 // Импортируем роутеры
 const routers = require('./routes/index');
@@ -24,8 +25,10 @@ mongoose.connect(MONGODB_URL, {
 });
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(helmet());
+app.use(limiter);
 
 // Логгер запросов
 app.use(requestLogger);
