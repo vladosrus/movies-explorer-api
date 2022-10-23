@@ -31,7 +31,7 @@ app.use(limiter);
 app.use(requestLogger);
 
 // Основные роуты
-app.use(routers);
+app.use('/api', routers);
 
 // Логгер ошибок
 app.use(errorLogger);
