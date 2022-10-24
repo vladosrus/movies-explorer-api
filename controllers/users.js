@@ -10,6 +10,9 @@ const {
   badRequestErrorMessage,
   conflictErrorMessage,
   notFoundErrorMessage,
+  successAuthMessage,
+  noCookieErrorMessage,
+  successSignoutMessage,
 } = require('../utils/constants');
 
 const { JWT_SECRET_KEY } = require('../utils/config');
@@ -90,7 +93,7 @@ const login = (req, res, next) => {
           httpOnly: true,
           sameSite: true,
         })
-        .send({ message: 'Авторизация прошла успешно', token })
+        .send({ message: successAuthMessage, token })
         .end();
     })
     .catch(next);
@@ -100,10 +103,10 @@ const logout = (req, res, next) => {
   if (req.cookies.jwt) {
     res
       .clearCookie('jwt')
-      .send({ message: 'Пользователь покинул систему' })
+      .send({ message: successSignoutMessage })
       .end();
   } else {
-    next(new BadRequestError('Сookie отсутствует'));
+    next(new BadRequestError(noCookieErrorMessage));
   }
 };
 

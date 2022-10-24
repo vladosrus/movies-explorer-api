@@ -1,12 +1,22 @@
 const { celebrate, Joi } = require('celebrate');
 const { ObjectId } = require('mongoose').Types;
 
+const {
+  invalidIdErrorMessage,
+  invalidUrlErrorMessage,
+  minLengthNameErrorMessage,
+  maxLengthNameErrorMessage,
+  invalidEmailFieldErrorMessage,
+  requiredErrorMessage,
+  emptyErrorMessage,
+} = require('../utils/constants');
+
 // Проверка корректности id
 const idValidator = (value, helpers) => {
   if (ObjectId.isValid(value)) {
     return value;
   }
-  return helpers.message('Передан неправильный id');
+  return helpers.message(invalidIdErrorMessage);
 };
 
 // Проверка корректности url-адреса
@@ -15,19 +25,7 @@ const urlValidator = (value, helpers) => {
   if (regex.test(value)) {
     return value;
   }
-  return helpers.message('Передан неправильный url');
-};
-
-// Создание сообщения об обязательном поле
-const requiredErrorMessage = (field) => {
-  const message = `Поле ${field} должно быть заполнено`;
-  return message;
-};
-
-// Создание сообщения о пустом поле
-const emptyErrorMessage = (field) => {
-  const message = `Поле ${field} не должно быть пустым`;
-  return message;
+  return helpers.message(invalidUrlErrorMessage);
 };
 
 // Параметры валидации поля name
@@ -37,8 +35,8 @@ const validateNameField = Joi.string()
   .max(30)
   .trim()
   .messages({
-    'string.min': 'Минимальная длина поля name - 2 символа',
-    'string.max': 'Максимальная длина поля name - 30 символов',
+    'string.min': minLengthNameErrorMessage,
+    'string.max': maxLengthNameErrorMessage,
     'string.empty': emptyErrorMessage('name'),
     'any.required': requiredErrorMessage('name'),
   });
@@ -51,7 +49,7 @@ const validateEmailField = Joi.string()
   .messages({
     'any.required': requiredErrorMessage('email'),
     'string.empty': emptyErrorMessage('email'),
-    'string.email': 'Поле email заполнено неверно',
+    'string.email': invalidEmailFieldErrorMessage,
   });
 
 // Параметры валидации поля password
