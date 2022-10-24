@@ -73,6 +73,8 @@ const updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'CastError' || err.name === 'ValidationError') {
         next(new BadRequestError(badRequestErrorMessage));
+      } else if (err.code === 11000) {
+        next(new ConflictError(conflictErrorMessage));
       } else {
         next(err);
       }
