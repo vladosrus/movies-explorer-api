@@ -11,7 +11,6 @@ const {
   conflictErrorMessage,
   notFoundErrorMessage,
   successAuthMessage,
-  noCookieErrorMessage,
   successSignoutMessage,
 } = require('../utils/constants');
 
@@ -95,21 +94,17 @@ const login = (req, res, next) => {
           httpOnly: true,
           sameSite: true,
         })
-        .send({ message: successAuthMessage, token })
-        .end();
+        .send({ message: successAuthMessage, token });
     })
     .catch(next);
 };
 
 const logout = (req, res, next) => {
-  if (req.cookies.jwt) {
-    res
-      .clearCookie('jwt')
-      .send({ message: successSignoutMessage })
-      .end();
-  } else {
-    next(new BadRequestError(noCookieErrorMessage));
-  }
+  res
+    .clearCookie('jwt')
+    .send({ message: successSignoutMessage });
+
+  next();
 };
 
 module.exports = {

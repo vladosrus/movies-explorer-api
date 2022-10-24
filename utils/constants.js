@@ -20,7 +20,6 @@ const invalidUrlErrorMessage = 'Передан неправильный url';
 const invalidEmailFieldErrorMessage = 'Поле email заполнено неверно';
 const minLengthNameErrorMessage = 'Минимальная длина поля name - 2 символа';
 const maxLengthNameErrorMessage = 'Максимальная длина поля name - 30 символов';
-const noCookieErrorMessage = 'Сookie отсутствует';
 
 // Сообщения ответов
 const successAuthMessage = 'Авторизация прошла успешно';
@@ -28,16 +27,10 @@ const successSignoutMessage = 'Пользователь покинул сист�
 const successDeleteFilmMessage = 'Фильм удален';
 
 // Создание сообщения об обязательном поле
-const requiredErrorMessage = (field) => {
-  const message = `Поле ${field} должно быть заполнено`;
-  return message;
-};
+const requiredErrorMessage = (field) => `Поле ${field} должно быть заполнено`;
 
 // Создание сообщения о пустом поле
-const emptyErrorMessage = (field) => {
-  const message = `Поле ${field} не должно быть пустым`;
-  return message;
-};
+const emptyErrorMessage = (field) => `Поле ${field} не должно быть пустым`;
 
 module.exports = {
   badRequest,
@@ -60,7 +53,6 @@ module.exports = {
   maxLengthNameErrorMessage,
   invalidEmailFieldErrorMessage,
   successAuthMessage,
-  noCookieErrorMessage,
   successSignoutMessage,
   successDeleteFilmMessage,
   requiredErrorMessage,
