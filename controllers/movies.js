@@ -48,8 +48,8 @@ const createMovie = (req, res, next) => {
     });
 };
 
-const getMovies = (req, res, next) => {
-  Movie.find({})
+const getUserMovies = (req, res, next) => {
+  Movie.find({ owner: req.user._id })
     .then((movies) => res.send(movies))
     .catch(next);
 };
@@ -77,6 +77,6 @@ const deleteMovie = (req, res, next) => {
 
 module.exports = {
   createMovie,
-  getMovies,
+  getUserMovies,
   deleteMovie,
 };
