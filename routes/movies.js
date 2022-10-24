@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const {
   createMovie,
-  getMovies,
+  getUserMovies,
   deleteMovie,
 } = require('../controllers/movies');
 const {
@@ -10,7 +10,7 @@ const {
   validateMovieBody,
 } = require('../middlewares/validations');
 
-router.get('/', getMovies);
+router.get('/', getUserMovies);
 router.post('/', validateMovieBody, createMovie);
 router.delete('/:movieId', validateMovieId, deleteMovie);
 
