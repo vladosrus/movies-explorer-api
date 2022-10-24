@@ -15,6 +15,29 @@ const wrongPathErrorMessage = 'Неправильный путь';
 const conflictErrorMessage = 'Пользователь с таким email уже зарегистрирован';
 const internalServerErrorMessage = 'Произошла ошибка';
 const invalidEmailOrPasswordMessage = 'Неправильные почта или пароль';
+const invalidIdErrorMessage = 'Передан неправильный id';
+const invalidUrlErrorMessage = 'Передан неправильный url';
+const invalidEmailFieldErrorMessage = 'Поле email заполнено неверно';
+const minLengthNameErrorMessage = 'Минимальная длина поля name - 2 символа';
+const maxLengthNameErrorMessage = 'Максимальная длина поля name - 30 символов';
+const noCookieErrorMessage = 'Сookie отсутствует';
+
+// Сообщения ответов
+const successAuthMessage = 'Авторизация прошла успешно';
+const successSignoutMessage = 'Пользователь покинул систему';
+const successDeleteFilmMessage = 'Фильм удален';
+
+// Создание сообщения об обязательном поле
+const requiredErrorMessage = (field) => {
+  const message = `Поле ${field} должно быть заполнено`;
+  return message;
+};
+
+// Создание сообщения о пустом поле
+const emptyErrorMessage = (field) => {
+  const message = `Поле ${field} не должно быть пустым`;
+  return message;
+};
 
 module.exports = {
   badRequest,
@@ -31,4 +54,15 @@ module.exports = {
   internalServerErrorMessage,
   wrongPathErrorMessage,
   invalidEmailOrPasswordMessage,
+  invalidIdErrorMessage,
+  invalidUrlErrorMessage,
+  minLengthNameErrorMessage,
+  maxLengthNameErrorMessage,
+  invalidEmailFieldErrorMessage,
+  successAuthMessage,
+  noCookieErrorMessage,
+  successSignoutMessage,
+  successDeleteFilmMessage,
+  requiredErrorMessage,
+  emptyErrorMessage,
 };

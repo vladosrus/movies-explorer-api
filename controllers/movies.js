@@ -7,6 +7,7 @@ const {
   forbiddenErrorMessage,
   notFoundErrorMessage,
   badRequestErrorMessage,
+  successDeleteFilmMessage,
 } = require('../utils/constants');
 
 const createMovie = (req, res, next) => {
@@ -60,7 +61,7 @@ const deleteMovie = (req, res, next) => {
     .then((movie) => {
       if (movie.owner.toString() === req.user._id) {
         Movie.remove(movie)
-          .then(() => res.send({ message: 'Фильм удален' }))
+          .then(() => res.send({ message: successDeleteFilmMessage }))
           .catch(next);
       } else {
         next(new ForbiddenError(forbiddenErrorMessage));
