@@ -14,7 +14,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const limiter = require('./middlewares/rate-limit');
 
 // Импортируем роутеры
-const routers = require('./routes/index');
+const routers = require('./routes');
 
 // Подключение к серверу mongoDB
 mongoose.connect(MONGODB_URL, {
@@ -31,7 +31,7 @@ app.use(limiter);
 app.use(requestLogger);
 
 // Основные роуты
-app.use('/api', routers);
+app.use('/', routers);
 
 // Логгер ошибок
 app.use(errorLogger);
