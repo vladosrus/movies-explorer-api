@@ -99,12 +99,10 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
-const logout = (req, res, next) => {
+const logout = (req, res) => {
   res
     .clearCookie('jwt')
     .send({ message: successSignoutMessage });
-
-  next();
 };
 
 module.exports = {
