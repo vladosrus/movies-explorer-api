@@ -12,6 +12,7 @@ const { PORT, MONGODB_URL } = require('./utils/config');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const limiter = require('./middlewares/rate-limit');
+const cors = require('./middlewares/cors');
 
 // Импортируем роутеры
 const routers = require('./routes');
@@ -24,6 +25,7 @@ mongoose.connect(MONGODB_URL, {
 // Логгер запросов
 app.use(requestLogger);
 
+app.use(cors);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
