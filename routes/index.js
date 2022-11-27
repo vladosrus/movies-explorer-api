@@ -13,8 +13,8 @@ const auth = require('../middlewares/auth');
 
 router.post('/api/signin', validateSignInBody, login);
 router.post('/api/signup', validateSignUpBody, createUser);
-router.use(auth);
 router.post('/api/signout', logout);
+router.use(auth);
 router.use('/api/users', routerUsers);
 router.use('/api/movies', routerMovies);
 
