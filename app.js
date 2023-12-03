@@ -33,7 +33,7 @@ app.use(helmet());
 app.use(limiter);
 
 // Основные роуты
-app.use('/', routers);
+app.use('/diploma/api/', routers);
 
 // Логгер ошибок
 app.use(errorLogger);
