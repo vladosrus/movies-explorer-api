@@ -11,12 +11,12 @@ const {
 const { wrongPathErrorMessage } = require('../utils/constants');
 const auth = require('../middlewares/auth');
 
-router.post('/api/signin', validateSignInBody, login);
-router.post('/api/signup', validateSignUpBody, createUser);
-router.post('/api/signout', logout);
+router.post('/signin', validateSignInBody, login);
+router.post('/signup', validateSignUpBody, createUser);
+router.post('/signout', logout);
 router.use(auth);
-router.use('/api/users', routerUsers);
-router.use('/api/movies', routerMovies);
+router.use('/users', routerUsers);
+router.use('/movies', routerMovies);
 
 // Обработка неправильного пути
 router.use((req, res, next) => {
