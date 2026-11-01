@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 
 const app = express();
+// За nginx: лимит запросов считается по реальному IP
+app.set('trust proxy', 1);
 const { PORT, MONGODB_URL } = require('./utils/config');
 
 // Импортируем мидлвэры
